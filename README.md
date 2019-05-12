@@ -1,0 +1,1 @@
+This project is to create a Java script that will execute a Rock, Paper, Scissors game, tally the results, and declare a winner.
