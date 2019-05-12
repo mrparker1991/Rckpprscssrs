@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rock, Paper, or Scissors? Choose wisely.</title>
+  </head>
+  <body>
+
+    <script>
+
+      console.log('Working?');
+      
+      function computerChoice() {
+        let num = Math.random()*100;
+        let selection;
+        if (num <= 33) {
+          selection = 'Rock';
+        } else if (num <= 67) {
+          selection = 'Paper';
+        } else {
+          selection = 'Scissors';
+        }
+        return selection;
+      }
+
+      let playerSelection = window.prompt('Rock, Paper, or Scissors', '');
+      let computerSelection = computerChoice();
+
+      function playRound(playerSelection, computerSelection) {
+        let player = playerSelection.toLowerCase();
+        let computer = computerSelection.toLowerCase();
+        let playerUpper = player.slice(0,1).toUpperCase() + player.slice(1);
+        let conc = player + computer;
+        switch (conc)  {
+
+          case 'rockscissors':
+          case 'paperrock':
+          case 'scissorspaper':
+            return 'You chose... wisely. ' + playerUpper + ' beats ' + computer + '.';
+            break;
+
+          case 'scissorsrock':
+          case 'rockpaper':
+          case 'paperscissors':
+            return 'You chose... poorly. ' + computerSelection + ' beats ' + player + '.';
+            break;
+
+          case 'rockrock':
+          case 'paperpaper':
+          case 'scissorsscissors':
+            return 'It\'\s a tie! You live to see another day.';
+            console.log(playRound(playerSelection,computerSelection));
+            break;
+
+          default: 
+            return 'Please enter Rock, Paper, or Scissors. The gods are impatient.';
+        }
+      }
+
+      console.log(playRound(playerSelection,computerSelection));
+
+    </script>
+  </body>
+</html>
