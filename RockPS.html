@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rock, Paper, or Scissors? Choose wisely.</title>
+  </head>
+
+  <body>
+    <script>
+      console.log('Ready?');
+
+      function computerChoice() {
+        let num = Math.random()*100;
+        let selection;
+        if (num <= 33) {
+          selection = 'Rock';
+        } else if (num <= 67) {
+          selection = 'Paper';
+        } else {
+          selection = 'Scissors';
+        }
+        return selection;
+      }
+
+
+      let playerSelection;
+      let computerSelection;
+
+
+      function playRound(playerSelection, computerSelection) {
+        playerSelection = window.prompt('Rock, Paper, or Scissors', '');
+        computerSelection = computerChoice();
+        let player = playerSelection.toLowerCase();
+        let computer = computerSelection.toLowerCase();
+        let playerUpper = player.slice(0,1).toUpperCase() + player.slice(1);
+        let messageWin = 'You chose... wisely. ' + playerUpper + ' beats ' + computer + '.';
+        let messageLoss = 'You chose... poorly. ' + computerSelection + ' beats ' + player + '.';
+        let messageTie = 'It\'\s a tie! You live to see another day.';
+        if (player === computer) {
+          return messageTie;
+        } else if (player == 'rock') {
+          if (computer == 'scissors') {
+            return messageWin;
+          } else {
+            return messageLoss;
+          }
+        } else if (player == 'paper') {
+          if (computer == 'rock') {
+            return messageWin;
+          } else {
+            return messageLoss;
+          }
+        } else if (player == 'scissors') {
+          if (computer == 'paper') {
+            return messageWin;
+          } else {
+            return messageLoss;
+          }
+        } else {
+          return 'Please enter Rock, Paper, or Scissors. The gods are impatient.';
+        }        
+      }
+
+      function game(roundNumber) {
+        let playerScore = 0;
+        let computerScore = 0;
+        for (let i=0; i < roundNumber; i++) {
+          let result = playRound(playerSelection,computerSelection);
+          if (result.indexOf('wise') !== -1) {
+            playerScore++;
+            console.log(result + ' Score: Player - ' + playerScore + ', Computer - ' + 
+            computerScore + '.');
+          }
+          else if (result.indexOf('poor') !== -1){
+            computerScore++;
+            console.log(result + ' Score: Player - ' + playerScore + ', Computer - ' + 
+            computerScore + '.');
+          }
+          else {
+            console.log(result + ' Score: Player - ' + playerScore + ', Computer - ' + 
+            computerScore + '.');
+            i--;
+          }
+        }
+        if (playerScore > computerScore) {
+          console.log('The gods shine upon you. Victory is yours.');
+        }
+        else {
+          console.log('Your luck has expired. The gods are angered.');
+        }      
+      }
+
+    game(5);
+
+    </script>
+
+  </body>
+
+</html>
